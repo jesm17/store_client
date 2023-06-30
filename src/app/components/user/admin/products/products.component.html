@@ -1,0 +1,81 @@
+<section class="">
+  <button class="btn btn-success mx-3 my-2">
+    Agregar producto <i class="bi bi-plus-lg"></i>
+  </button>
+</section>
+<main>
+  <section id="products-table" class="p-3">
+    <mat-form-field class="mx-2 my-1 w-75">
+      <mat-label>Nombre, categoria o precio</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Nombre producto, categoria o precio"
+        #input
+      />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>index</th>
+        <td mat-cell *matCellDef="let index = index">{{ index + 1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Precio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+        <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Categorias">
+        <th mat-header-cell *matHeaderCellDef>Categorias</th>
+        <td mat-cell *matCellDef="let element; let x">
+          <ul>
+            <li *ngFor="let categorie of element.categories">
+              {{ categorie }}
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Imagen">
+        <th mat-header-cell *matHeaderCellDef>Imagen</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            src="{{ element.image }}"
+            alt=""
+            width="100"
+            height="75"
+            draggable="false"
+          />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-primary mx-1 my-1">
+            <i class="bi bi-pencil"></i></button
+          ><button class="btn btn-danger mx-1 my-1">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="1">
+          sin resultados para: "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageSize]="10"
+      aria-label="Elementos por pagina"
+    ></mat-paginator>
+  </section>
+</main>

@@ -1,0 +1,37 @@
+<mat-tab-group mat-align-tabs="center" >
+  <mat-tab title="productos" >
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-tab">view_list</mat-icon> Productos
+    </ng-template>
+    <app-products></app-products>
+  </mat-tab>
+
+  <mat-tab title="categorias">
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-tab">category</mat-icon>Categorias
+    </ng-template>
+    <app-categories></app-categories>
+  </mat-tab>
+
+  <mat-tab title="clientes">
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-tab">person</mat-icon>clientes
+    </ng-template>
+    <app-clients></app-clients>
+  </mat-tab>
+
+  <mat-tab title="Empleados">
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-tab">contact_page</mat-icon>Empleados
+    </ng-template>
+    <app-employees>a</app-employees>
+  </mat-tab>
+
+  <mat-tab title="Administradores">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">admin_panel_settings</mat-icon>
+      Administradores
+    </ng-template>
+    <app-admins></app-admins>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,69 @@
+
+<mat-grid-list cols="3" rowHeight="4:4">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <mat-card class="w-100">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form action="" [formGroup]="loginForm" (ngSubmit)="adminSigIn()">
+          <mat-form-field class="w-100">
+            <mat-label>email </mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              [errorStateMatcher]="matcher"
+              placeholder="Ej. pat@example.com"
+            />
+
+            <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+              Ingrese un <strong>correo valido</strong>
+            </mat-error>
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+              El correo es <strong>requerido</strong>
+            </mat-error>
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>password </mat-label>
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              [errorStateMatcher]="matcher"
+              placeholder="password123"
+            />
+
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('required')"
+            >
+              La contraseña es <strong>requerida</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('minlength')"
+            >
+              La contraseña debe ser de <strong>minimo 8 caracteres</strong>
+            </mat-error>
+            <mat-icon matSuffix>password</mat-icon>
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <button
+              mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid"
+              
+            >
+              
+              <mat-icon> input </mat-icon>
+              Ingresar
+            </button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
